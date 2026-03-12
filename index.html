@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Portal - Vanier College</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #e6e8ec;
+            overflow: hidden; 
+        }
+
+        /* The Hover Trigger (The 3 Bars) */
+        .menu-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .hamburger {
+            width: 30px;
+            height: 4px;
+            background-color: #c62828;
+            margin: 6px 0;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+
+        /* Navigation Drawer */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: -280px; 
+            width: 260px;
+            height: 100%;
+            background-color: #f3f4f6;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+        }
+
+        /* Show menu on hover */
+        .menu-container:hover .nav-drawer {
+            left: 0;
+        }
+
+        .nav-drawer a {
+            padding: 18px 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            border-bottom: 1px solid #e0e0e0;
+            transition: all 0.2s;
+        }
+
+        .nav-drawer a:hover {
+            background-color: #ffffff;
+            color: #c62828;
+            padding-left: 35px;
+        }
+
+        /* Content Area - Now takes full height since logo is inside it */
+        .content-frame {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            background: #e6e8ec;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+
+        <nav class="nav-drawer">
+            <a href="index.html">Main Page</a>
+            <a href="MathLogic.html" target="content-viewport">Math Logic (201-911-VA)</a>
+            <a href="OpSys.html" target="content-viewport">Operating Systems (420-911-VA)</a>
+            <a href="Programming1.html" target="content-viewport">Programming 1 (420-910-VA)</a>
+        </nav>
+    </div>
+
+    <iframe name="content-viewport" class="content-frame" srcdoc="
+        <html>
+        <body style='margin:0; padding:0; font-family: sans-serif; text-align: center; background: #e6e8ec;'>
+            <header style='padding: 40px 20px 10px 20px;'>
+                <img src='logo_vanier.png' alt='Vanier College Logo' style='width: 180px;'>
+                <h1 style='color: #c62828; font-size: 32px; margin-top: 15px;'>Software Development Program Portal</h1>
+                <p style='color: #555;'>Select a course from the menu on the left to view materials and recordings.</p>
+            </header>
+        </body>
+        </html>
+    "></iframe>
+
+</body>
+</html>
