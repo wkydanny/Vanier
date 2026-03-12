@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Portal - Vanier College</title>
-    <link rel="icon" type="image/jpeg" href="icon_vanier.png">
+	<link rel="icon" type="image/jpeg" href="icon_vanier.png">
     <style>
         body, html {
             margin: 0;
@@ -69,14 +69,52 @@
             padding-left: 35px;
         }
 
-        /* Content Area - Now takes full height since logo is inside it */
+        /* Omnivox Button Styling inside Menu */
+        .omnivox-menu-btn {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: none !important;
+        }
+
+        .omnivox-menu-btn img {
+            width: 180px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .omnivox-menu-btn:hover img {
+            transform: scale(1.05);
+        }
+		
+		/* Content Area - Now takes full height since logo is inside it */
         .content-frame {
             width: 100%;
             height: 100vh;
             border: none;
             background: #e6e8ec;
         }
-    </style>
+		
+		/* Default Main Page Content */
+        .home-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background: #e6e8ec;
+            text-align: center;
+        }
+		
+		/* Schedule Table Styling */
+        .schedule-container { max-width: 900px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .schedule-grid { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 1px; background: #ddd; border: 1px solid #ddd; }
+        .grid-header { background: #c62828; color: white; padding: 10px; font-weight: bold; font-size: 14px; }
+        .time-col { background: #f9f9f9; font-size: 11px; padding: 10px 5px; font-weight: bold; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: center; }
+        .day-cell { background: white; min-height: 90px; padding: 8px; font-size: 12px; display: flex; flex-direction: column; justify-content: center; border: 1px solid #f0f0f0; }
+        .course-box { padding: 6px; border-radius: 4px; line-height: 1.3; border-left: 3px solid #c62828; background: #fff5f5; text-align: left; }
+        .time-label { display: block; font-weight: bold; color: #c62828; font-size: 10px; }
+	</style>
 </head>
 <body>
 
@@ -90,43 +128,109 @@
             <a href="MathLogic.html" target="content-viewport">Math Logic (201-911-VA)</a>
             <a href="OpSys.html" target="content-viewport">Operating Systems (420-911-VA)</a>
             <a href="Programming1.html" target="content-viewport">Programming 1 (420-910-VA)</a>
+			<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn">
+                <img src="logo_omnivox.jpg" alt="Visit Vanier Omnivox">
+            </a>
         </nav>
     </div>
 
-    <iframe name="content-viewport" class="content-frame" srcdoc="
+   <iframe name="content-viewport" class="content-frame" srcdoc="
         <html>
         <head>
             <style>
-                .omnivox-btn {
-                    display: inline-block;
-                    margin-top: 30px;
-                    transition: transform 0.2s ease;
-                }
-                .omnivox-btn:hover {
-                    transform: scale(1.05);
-                }
-                .omnivox-img {
-                    width: 200px; /* Adjust size as needed */
-                    border-radius: 8px;
-                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                }
+                body { margin:0; padding:0; font-family: 'Segoe UI', sans-serif; text-align: center; background: #e6e8ec; color: #333; }
+                header { padding: 40px 20px 10px 20px; }
+                
+                .omnivox-btn { display: inline-block; margin: 20px 0; transition: transform 0.2s; }
+                .omnivox-btn:hover { transform: scale(1.05); }
+                .omnivox-img { width: 200px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+                /* Schedule Table Styling */
+                .schedule-container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+                .schedule-grid { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 1px; background: #ddd; border: 1px solid #ddd; }
+                .grid-header { background: #c62828; color: white; padding: 10px; font-weight: bold; }
+                .time-col { background: #f9f9f9; font-size: 12px; padding: 10px 5px; font-weight: bold; border-bottom: 1px solid #eee; }
+                .day-cell { background: white; min-height: 80px; padding: 10px; font-size: 13px; display: flex; flex-direction: column; justify-content: center; border: 1px solid #f0f0f0; }
+                
+                .course-box { padding: 8px; border-radius: 4px; margin-bottom: 5px; line-height: 1.4; border-left: 4px solid #c62828; background: #fff5f5; text-align: left; }
+                .time-label { display: block; font-weight: bold; color: #c62828; font-size: 11px; margin-bottom: 2px; }
+                .instructor { font-size: 11px; color: #666; font-style: italic; }
             </style>
         </head>
-        <body style='margin:0; padding:0; font-family: sans-serif; text-align: center; background: #e6e8ec;'>
-            <header style='padding: 40px 20px 10px 20px;'>
-                <img src='logo_vanier.png' alt='Vanier College Logo' style='width: 180px;'>
+        <body>
+            <header>
+				<img src='logo_vanier.png' alt='Vanier College Logo' style='width: 180px;'>
                 <h1 style='color: #c62828; font-size: 32px; margin-top: 15px;'>Software Development Program Portal</h1>
                 <p style='color: #555;'>Select a course from the menu on the left to view materials and recordings.</p>
-                
-                <a href='https://vaniercollege.omnivox.ca/' target='_blank' class='omnivox-btn'>
-                    <img src='logo_omnivox.jpg' alt='Visit Vanier Omnivox' class='omnivox-img'>
-                </a>
+
+                <div class='schedule-container'>
+                    <div class='schedule-grid'>
+                        <div class='grid-header'>Time</div>
+                        <div class='grid-header'>Mon</div>
+                        <div class='grid-header'>Tue</div>
+                        <div class='grid-header'>Wed</div>
+                        <div class='grid-header'>Thu</div>
+                        <div class='grid-header'>Fri</div>
+
+                        <div class='time-col'>Morning<br>09:00 - 12:45</div>
+                        <div class='day-cell'>
+                            <div class='course-box'>
+                                <span class='time-label'>09:00 - 12:00</span>
+                                <b>Math Logic</b><br>201-911-VA<br><span class='instructor'>Cebanu, R.</span>
+                            </div>
+                        </div>
+                        <div class='day-cell'>
+                            <div class='course-box'>
+                                <span class='time-label'>09:00 - 12:00</span>
+                                <b>Math Logic</b><br>201-911-VA<br><span class='instructor'>Cebanu, R.</span>
+                            </div>
+                        </div>
+                        <div class='day-cell'></div>
+                        <div class='day-cell'>
+                            <div class='course-box'>
+                                <span class='time-label'>10:15 - 12:45</span>
+                                <b>Operating Systems</b><br>420-911-VA<br><span class='instructor'>Talla, M.</span>
+                            </div>
+                        </div>
+                        <div class='day-cell'>
+                            <div class='course-box'>
+                                <span class='time-label'>09:00 - 12:30</span>
+                                <b>Programming Concepts</b><br>420-910-VA<br><span class='instructor'>Wang, B.</span>
+                            </div>
+                        </div>
+
+                        <div class='time-col'>Afternoon<br>13:00 - 16:30</div>
+                        <div class='day-cell'>
+                            <div class='course-box'>
+                                <span class='time-label'>13:00 - 16:30</span>
+                                <b>Programming Concepts</b><br>420-910-VA<br><span class='instructor'>Wang, B.</span>
+                            </div>
+                        </div>
+                        <div class='day-cell'>
+                            <div class='course-box'>
+                                <span class='time-label'>13:00 - 16:30</span>
+                                <b>Operating Systems</b><br>420-911-VA<br><span class='instructor'>Talla, M.</span>
+                            </div>
+                        </div>
+                        <div class='day-cell'>
+                            <div class='course-box'>
+                                <span class='time-label'>13:00 - 16:30</span>
+                                <b>Programming Concepts</b><br>420-910-VA<br><span class='instructor'>Wang, B.</span>
+                            </div>
+                        </div>
+                        <div class='day-cell'></div>
+                        <div class='day-cell'>
+                            <div class='course-box'>
+                                <span class='time-label'>13:00 - 16:00</span>
+                                <b>Operating Systems</b><br>420-911-VA<br><span class='instructor'>Talla, M.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </header>
         </body>
         </html>
     "></iframe>
 
 </body>
-
 </html>
-
