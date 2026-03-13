@@ -124,14 +124,27 @@
         <div class="hamburger"></div>
 
         <nav class="nav-drawer">
-            <a href="index.html">Main Page</a>
-            <a href="MathLogic.html" target="content-viewport">Math Logic (201-911-VA)</a>
-            <a href="OpSys.html" target="content-viewport">Operating Systems (420-911-VA)</a>
-            <a href="Programming1.html" target="content-viewport">Programming 1 (420-910-VA)</a>
-			<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn">
-                <img src="logo_omnivox.jpg" alt="Visit Vanier Omnivox">
-            </a>
-        </nav>
+		    <a href="index.html">Main Page</a>
+		    
+		    <a href="MathLogic.html" target="content-viewport" 
+		       onclick="document.getElementsByName('content-viewport')[0].src='MathLogic.html?t=' + new Date().getTime(); return true;">
+		       Math Logic (201-911-VA)
+		    </a>
+		    
+		    <a href="OpSys.html" target="content-viewport" 
+		       onclick="document.getElementsByName('content-viewport')[0].src='OpSys.html?t=' + new Date().getTime(); return true;">
+		       Operating Systems (420-911-VA)
+		    </a>
+		    
+		    <a href="Programming1.html" target="content-viewport" 
+		       onclick="document.getElementsByName('content-viewport')[0].src='Programming1.html?t=' + new Date().getTime(); return true;">
+		       Programming 1 (420-910-VA)
+		    </a>
+		    
+		    <a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn">
+		        <img src="logo_omnivox.jpg" alt="Visit Vanier Omnivox">
+		    </a>
+		</nav>
     </div>
 
    <iframe name="content-viewport" class="content-frame" srcdoc="
