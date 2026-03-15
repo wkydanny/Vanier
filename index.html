@@ -4,117 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Portal - Vanier College</title>
-	<link rel="icon" type="image/jpeg" href="icon_vanier.png">
+    <link rel="icon" type="image/jpeg" href="icon_vanier.png">
     <style>
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+            margin: 0; padding: 0; height: 100%;
             font-family: "Segoe UI", Arial, sans-serif;
-            background: #e6e8ec;
-            overflow: hidden; 
+            background: #e6e8ec; overflow: hidden; 
         }
 
-        /* The Hover Trigger (The 3 Bars) */
         .menu-container {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            padding: 10px;
-            cursor: pointer;
+            position: fixed; top: 20px; left: 20px;
+            z-index: 1000; padding: 10px; cursor: pointer;
         }
 
         .hamburger {
-            width: 30px;
-            height: 4px;
-            background-color: #c62828;
-            margin: 6px 0;
-            transition: 0.4s;
-            border-radius: 2px;
+            width: 30px; height: 4px; background-color: #c62828;
+            margin: 6px 0; transition: 0.4s; border-radius: 2px;
         }
 
-        /* Navigation Drawer */
         .nav-drawer {
-            position: fixed;
-            top: 0;
-            left: -280px; 
-            width: 260px;
-            height: 100%;
-            background-color: #f3f4f6;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            transition: 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            padding-top: 80px;
+            position: fixed; top: 0; left: -280px; 
+            width: 260px; height: 100%;
+            background-color: #f3f4f6; box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            transition: 0.3s ease; display: flex; flex-direction: column; padding-top: 80px;
         }
 
-        /* Show menu on hover */
-        .menu-container:hover .nav-drawer {
-            left: 0;
-        }
+        .menu-container:hover .nav-drawer { left: 0; }
 
         .nav-drawer a {
-            padding: 18px 25px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 18px 25px; text-decoration: none;
+            color: #333; font-weight: bold; border-bottom: 1px solid #e0e0e0;
             transition: all 0.2s;
         }
 
-        .nav-drawer a:hover {
-            background-color: #ffffff;
-            color: #c62828;
-            padding-left: 35px;
-        }
+        .nav-drawer a:hover { background-color: #ffffff; color: #c62828; padding-left: 35px; }
 
-        /* Omnivox Button Styling inside Menu */
-        .omnivox-menu-btn {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: none !important;
-        }
-
-        .omnivox-menu-btn img {
-            width: 180px;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-
-        .omnivox-menu-btn:hover img {
-            transform: scale(1.05);
-        }
-		
-		/* Content Area - Now takes full height since logo is inside it */
-        .content-frame {
-            width: 100%;
-            height: 100vh;
-            border: none;
-            background: #e6e8ec;
-        }
-		
-		/* Default Main Page Content */
-        .home-screen {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            background: #e6e8ec;
-            text-align: center;
-        }
-		
-		/* Schedule Table Styling */
-        .schedule-container { max-width: 900px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .schedule-grid { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 1px; background: #ddd; border: 1px solid #ddd; }
-        .grid-header { background: #c62828; color: white; padding: 10px; font-weight: bold; font-size: 14px; }
-        .time-col { background: #f9f9f9; font-size: 11px; padding: 10px 5px; font-weight: bold; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: center; }
-        .day-cell { background: white; min-height: 90px; padding: 8px; font-size: 12px; display: flex; flex-direction: column; justify-content: center; border: 1px solid #f0f0f0; }
-        .course-box { padding: 6px; border-radius: 4px; line-height: 1.3; border-left: 3px solid #c62828; background: #fff5f5; text-align: left; }
-        .time-label { display: block; font-weight: bold; color: #c62828; font-size: 10px; }
-	</style>
+        .omnivox-menu-btn { text-align: center; padding: 20px 0; border-bottom: none !important; }
+        .omnivox-menu-btn img { width: 180px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .omnivox-menu-btn:hover img { transform: scale(1.05); }
+        
+        .content-frame { width: 100%; height: 100vh; border: none; background: #e6e8ec; }
+    </style>
 </head>
 <body>
 
@@ -124,123 +54,125 @@
         <div class="hamburger"></div>
 
         <nav class="nav-drawer">
-		    <a href="index.html">Main Page</a>
-		    
-		    <a href="MathLogic.html" target="content-viewport" 
-		       onclick="document.getElementsByName('content-viewport')[0].src='MathLogic.html?t=' + new Date().getTime(); return true;">
-		       Math Logic (201-911-VA)
-		    </a>
-		    
-		    <a href="OpSys.html" target="content-viewport" 
-		       onclick="document.getElementsByName('content-viewport')[0].src='OpSys.html?t=' + new Date().getTime(); return true;">
-		       Operating Systems (420-911-VA)
-		    </a>
-		    
-		    <a href="Programming1.html" target="content-viewport" 
-		       onclick="document.getElementsByName('content-viewport')[0].src='Programming1.html?t=' + new Date().getTime(); return true;">
-		       Programming 1 (420-910-VA)
-		    </a>
-		    
-		    <a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn">
-		        <img src="logo_omnivox.jpg" alt="Visit Vanier Omnivox">
-		    </a>
-
-			<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn">
-		        <img src="logo-ticfp.png" alt="Visit TicFP">
-		    </a>
-		</nav>
+            <a href="index.html">Main Page</a>
+            <a href="MathLogic.html" target="content-viewport" onclick="document.getElementsByName('content-viewport')[0].src='MathLogic.html?t=' + new Date().getTime(); return true;">Math Logic (201-911-VA)</a>
+            <a href="OpSys.html" target="content-viewport" onclick="document.getElementsByName('content-viewport')[0].src='OpSys.html?t=' + new Date().getTime(); return true;">Operating Systems (420-911-VA)</a>
+            <a href="Programming1.html" target="content-viewport" onclick="document.getElementsByName('content-viewport')[0].src='Programming1.html?t=' + new Date().getTime(); return true;">Programming 1 (420-910-VA)</a>
+            <a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn"><img src="logo_omnivox.jpg" alt="Visit Omnivox"></a>
+            <a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn"><img src="logo-ticfp.png" alt="Visit TicFP"></a>
+        </nav>
     </div>
 
-   <iframe name="content-viewport" class="content-frame" srcdoc="
+    <iframe name="content-viewport" class="content-frame" srcdoc="
         <html>
         <head>
             <style>
-                body { margin:0; padding:0; font-family: 'Segoe UI', sans-serif; text-align: center; background: #e6e8ec; color: #333; }
-                header { padding: 40px 20px 10px 20px; }
-                
-                .omnivox-btn { display: inline-block; margin: 20px 0; transition: transform 0.2s; }
-                .omnivox-btn:hover { transform: scale(1.05); }
-                .omnivox-img { width: 200px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-
-                /* Schedule Table Styling */
+                body { margin:0; padding:20px; font-family: 'Segoe UI', sans-serif; text-align: center; background: #e6e8ec; color: #333; }
                 .schedule-container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
                 .schedule-grid { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 1px; background: #ddd; border: 1px solid #ddd; }
-                .grid-header { background: #c62828; color: white; padding: 10px; font-weight: bold; }
-                .time-col { background: #f9f9f9; font-size: 12px; padding: 10px 5px; font-weight: bold; border-bottom: 1px solid #eee; }
-                .day-cell { background: white; min-height: 80px; padding: 10px; font-size: 13px; display: flex; flex-direction: column; justify-content: center; border: 1px solid #f0f0f0; }
+                .grid-header { background: #c62828; color: white; padding: 10px; font-weight: bold; font-size: 14px; }
+                .time-col { background: #f9f9f9; font-size: 11px; padding: 10px 5px; font-weight: bold; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: center; text-align:center; }
+                .day-cell { background: white; min-height: 90px; padding: 8px; font-size: 12px; display: flex; flex-direction: column; justify-content: center; border: 1px solid #f0f0f0; }
+                .course-box { padding: 6px; border-radius: 4px; line-height: 1.3; border-left: 3px solid #c62828; background: #fff5f5; text-align: left; margin-bottom: 4px; }
+                .time-label { display: block; font-weight: bold; color: #c62828; font-size: 10px; }
                 
-                .course-box { padding: 8px; border-radius: 4px; margin-bottom: 5px; line-height: 1.4; border-left: 4px solid #c62828; background: #fff5f5; text-align: left; }
-                .time-label { display: block; font-weight: bold; color: #c62828; font-size: 11px; margin-bottom: 2px; }
-                .instructor { font-size: 11px; color: #666; font-style: italic; }
+                .deadline-container { max-width: 600px; margin: 30px auto; text-align: left; background: #fff; padding: 20px; border-radius: 12px; border-top: 5px solid #c62828; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+                .deadline-item { border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; }
+                .deadline-date { font-weight: bold; color: #c62828; width: 140px; }
             </style>
         </head>
         <body>
-            <header>
-				<img src='logo_vanier.png' alt='Vanier College Logo' style='width: 180px;'>
-                <h1 style='color: #c62828; font-size: 32px; margin-top: 15px;'>Software Development Program Portal</h1>
-                <p style='color: #555;'>Select a course from the menu on the left to view materials and recordings.</p>
+            <img src='logo_vanier.png' style='width: 180px;'>
+            <h1 style='color: #c62828; margin-top: 10px;'>Software Development Program Portal</h1>
+            <p id='week-range' style='font-weight: bold; color: #555;'></p>
 
-                <div class='schedule-container'>
-                    <div class='schedule-grid'>
-                        <div class='grid-header'>Time</div>
-                        <div class='grid-header'>Mon</div>
-                        <div class='grid-header'>Tue</div>
-                        <div class='grid-header'>Wed</div>
-                        <div class='grid-header'>Thu</div>
-                        <div class='grid-header'>Fri</div>
-
-                        <div class='time-col'>Morning<br>09:00 - 12:45</div>
-                        <div class='day-cell'>
-                            <div class='course-box'>
-                                <span class='time-label'>09:00 - 12:00</span>
-                                <b>Math Logic</b><br>201-911-VA<br><span class='instructor'>Cebanu, R.</span>
-                            </div>
-                        </div>
-                        <div class='day-cell'>
-                            <div class='course-box'>
-                                <span class='time-label'>09:00 - 12:00</span>
-                                <b>Math Logic</b><br>201-911-VA<br><span class='instructor'>Cebanu, R.</span>
-                            </div>
-                        </div>
-                        <div class='day-cell'></div>
-                        <div class='day-cell'>
-                            <div class='course-box'>
-                                <span class='time-label'>10:15 - 12:45</span>
-                                <b>Operating Systems</b><br>420-911-VA<br><span class='instructor'>Talla, M.</span>
-                            </div>
-                        </div>
-                        <div class='day-cell'>
-                            <div class='course-box'>
-                                <span class='time-label'>09:00 - 12:30</span>
-                                <b>Programming Concepts</b><br>420-910-VA<br><span class='instructor'>Wang, B.</span>
-                            </div>
-                        </div>
-
-                        <div class='time-col'>Afternoon<br>13:00 - 16:30</div>
-                        <div class='day-cell'>
-                            <div class='course-box'>
-                                <span class='time-label'>13:00 - 16:30</span>
-                                <b>Programming Concepts</b><br>420-910-VA<br><span class='instructor'>Wang, B.</span>
-                            </div>
-                        </div>
-                        <div class='day-cell'>
-                            <div class='course-box'>
-                                <span class='time-label'>13:00 - 16:30</span>
-                                <b>Operating Systems</b><br>420-911-VA<br><span class='instructor'>Talla, M.</span>
-                            </div>
-                        </div>
-                        <div class='day-cell'>
-                            <div class='course-box'>
-                                <span class='time-label'>13:00 - 16:30</span>
-                                <b>Programming Concepts</b><br>420-910-VA<br><span class='instructor'>Wang, B.</span>
-                            </div>
-                        </div>
-                        <div class='day-cell'></div>
-                        <div class='day-cell'></div>
-                        </div>
+            <div class='schedule-container'>
+                <div class='schedule-grid' id='schedule-body'>
+                    <div class='grid-header'>Time</div>
+                    <div class='grid-header'>Mon</div><div class='grid-header'>Tue</div>
+                    <div class='grid-header'>Wed</div><div class='grid-header'>Thu</div>
+                    <div class='grid-header'>Fri</div>
                     </div>
-                </div>
-            </header>
+            </div>
+
+            <div class='deadline-container'>
+                <h3 style='margin-top:0; color:#c62828;'>Upcoming Deadlines & Tests</h3>
+                <div id='deadline-list'></div>
+            </div>
+
+            <script>
+                const courses = {
+                    math: '<b>Math Logic</b><br>201-911-VA',
+                    prog: '<b>Programming 1</b><br>420-910-VA',
+                    os: '<b>Operating Systems</b><br>420-911-VA'
+                };
+
+                const schedules = {
+                    'default': {
+                        mon: [{t:'09:00-12:00', c:courses.math}, {t:'13:00-16:30', c:courses.prog, pm:true}],
+                        tue: [{t:'09:00-12:00', c:courses.math}, {t:'13:00-16:30', c:courses.os, pm:true}],
+                        wed: [{t:'13:00-16:30', c:courses.prog, pm:true}],
+                        thu: [{t:'10:15-12:25', c:courses.os}],
+                        fri: [{t:'09:00-12:30', c:courses.prog}]
+                    },
+                    'apr06': { // Week of Apr 6 (Monday Apr 6 is missing in your list)
+                        mon: [],
+                        tue: [{t:'09:00-12:00', c:courses.math}, {t:'13:00-16:30', c:courses.os, pm:true}],
+                        wed: [{t:'13:00-16:30', c:courses.prog, pm:true}],
+                        thu: [{t:'10:15-12:25', c:courses.os}],
+                        fri: [{t:'09:00-12:30', c:courses.prog}]
+                    }
+                };
+
+                const deadlines = [
+                    {d: '2026-03-17', msg: 'OS - Assignment #2 Deadline'},
+                    {d: '2026-03-20', msg: 'Java - Quiz #2'},
+                    {d: '2026-03-24', msg: 'Math - Assignment #2 Deadline'},
+                    {d: '2026-03-24', msg: 'Math - Test #2'},
+                    {d: '2026-04-10', msg: 'Java - Quiz #3'},
+                    {d: '2026-04-14', msg: 'Math - Test #3'},
+                    {d: '2026-04-24', msg: 'Java - Quiz #4'},
+                    {d: '2026-04-27', msg: 'Math - Final Exam'},
+                    {d: '2026-05-01', msg: 'Java - Project Deadline'}
+                ];
+
+                function init() {
+                    const now = new Date();
+                    // Determine the Monday of the current week (based on last Saturday)
+                    let day = now.getDay(); 
+                    let diff = now.getDate() - day + (day < 6 ? -5 : 2); 
+                    const monday = new Date(now.setDate(diff));
+                    monday.setHours(0,0,0,0);
+
+                    const friday = new Date(monday); friday.setDate(monday.getDate() + 4);
+                    document.getElementById('week-range').innerText = 'Schedule for: ' + monday.toLocaleDateString() + ' to ' + friday.toLocaleDateString();
+
+                    // Load Schedule
+                    const weekKey = monday.getMonth() === 3 && monday.getDate() === 6 ? 'apr06' : 'default';
+                    const sched = schedules[weekKey] || schedules.default;
+                    const grid = document.getElementById('schedule-body');
+
+                    ['AM', 'PM'].forEach((period, idx) => {
+                        grid.innerHTML += `<div class='time-col'>\${period}</div>`;
+                        ['mon','tue','wed','thu','fri'].forEach(d => {
+                            const active = sched[d].filter(item => idx === 0 ? !item.pm : item.pm);
+                            let cellHtml = `<div class='day-cell'>`;
+                            active.forEach(a => {
+                                cellHtml += `<div class='course-box'><span class='time-label'>\${a.t}</span>\${a.c}</div>`;
+                            });
+                            grid.innerHTML += cellHtml + `</div>`;
+                        });
+                    });
+
+                    // Load Deadlines (Filter for today and future only)
+                    const todayStr = new Date().toISOString().split('T')[0];
+                    const list = document.getElementById('deadline-list');
+                    deadlines.filter(item => item.d >= todayStr).forEach(item => {
+                        list.innerHTML += `<div class='deadline-item'><span class='deadline-date'>\${item.d}</span><span>\${item.msg}</span></div>`;
+                    });
+                }
+                init();
+            </script>
         </body>
         </html>
     "></iframe>
