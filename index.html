@@ -52,10 +52,10 @@
 			<a href="javascript:void(0)" onclick="loadPage('OpSys.html')">Operating Systems (420-911-VA)</a>
 			<a href="javascript:void(0)" onclick="loadPage('Programming1.html')">Programming 1 (420-910-VA)</a>
 			
-			<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu(event)">
+			<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu()">
 				<img src="logo_omnivox.jpg" alt="Omnivox">
 			</a>
-			<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu(event)">
+			<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu()">
 				<img src="logo-ticfp.png" alt="TicFP">
 			</a>
 		</nav>
@@ -161,38 +161,33 @@
 		function toggleMenu(event) {
 			const nav = document.getElementById('navDrawer');
 			
-			// If we have an event, check if the user clicked the menu button itself
+			// If an event is passed, it means the Hamburger icon was clicked
 			if (event) {
-				// Stop the click from traveling from the link up to the container
-				event.stopPropagation();
-				
-				// Only toggle if we clicked the container/hamburger, not the links inside
-				if (event.target.classList.contains('menu-container') || event.target.classList.contains('hamburger')) {
-					nav.classList.toggle('open');
-				}
+				event.stopPropagation(); // Stops the click from "bubbling" to other elements
+				nav.classList.toggle('open');
 			} else {
-				// If called without an event (from a link), just close it
+				// If no event, a link was clicked: force the menu to close
 				nav.classList.remove('open');
 			}
 		}
 
-		// This handles the page loading AND closes the menu properly
 		function loadPage(pageUrl) {
-			toggleMenu(); // Closes the menu
 			const frame = document.getElementsByName('content-viewport')[0];
 			if (frame) {
+				// This updates the iframe content and adds a timestamp to prevent caching
 				frame.src = pageUrl + '?t=' + new Date().getTime();
 			}
+			toggleMenu(); // Closes the menu after the load starts
 		}
 
-		// Close menu if user clicks anywhere else on the screen
+		// Close menu if user clicks anywhere outside the menu drawer
 		window.onclick = function(event) {
 			const nav = document.getElementById('navDrawer');
-			if (!event.target.closest('.menu-container') && nav.classList.contains('open')) {
+			const menuCont = document.querySelector('.menu-container');
+			if (!menuCont.contains(event.target) && nav.classList.contains('open')) {
 				nav.classList.remove('open');
 			}
 		}
-		
 	</script>
 
 </body>
