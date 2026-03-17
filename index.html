@@ -42,24 +42,19 @@
 <body>
 
     <div class="menu-container" onclick="toggleMenu(event)">
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-        <nav class="nav-drawer" id="navDrawer">
-			<a href="index.html">Main Page</a>
-			
-			<a href="javascript:void(0)" onclick="loadPage('MathLogic.html')">Math Logic (201-911-VA)</a>
-			<a href="javascript:void(0)" onclick="loadPage('OpSys.html')">Operating Systems (420-911-VA)</a>
-			<a href="javascript:void(0)" onclick="loadPage('Programming1.html')">Programming 1 (420-910-VA)</a>
-			
-			<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu()">
-				<img src="logo_omnivox.jpg" alt="Omnivox">
-			</a>
-			<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu()">
-				<img src="logo-ticfp.png" alt="TicFP">
-			</a>
-		</nav>
-    </div>
+		<div class="hamburger"></div>
+		<div class="hamburger"></div>
+		<div class="hamburger"></div>
+	</div>
+
+	<nav class="nav-drawer" id="navDrawer">
+		<a href="index.html" onclick="closeMenu()">Main Page</a>
+		<a href="MathLogic.html" target="content-viewport" onclick="loadPage('MathLogic.html')">Math Logic (201-911-VA)</a>
+		<a href="OpSys.html" target="content-viewport" onclick="loadPage('OpSys.html')">Operating Systems (420-911-VA)</a>
+		<a href="Programming1.html" target="content-viewport" onclick="loadPage('Programming1.html')">Programming 1 (420-910-VA)</a>
+		<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn" onclick="closeMenu()"><img src="logo_omnivox.jpg" alt="Omnivox"></a>
+		<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn" onclick="closeMenu()"><img src="logo-ticfp.png" alt="TicFP"></a>
+	</nav>
 
     <iframe name="content-viewport" class="content-frame" srcdoc="
         <html>
@@ -158,34 +153,30 @@
     "></iframe>
 	
 	<script>
+		const nav = document.getElementById('navDrawer');
+
+		// Toggles the menu when clicking the hamburger
 		function toggleMenu(event) {
-			const nav = document.getElementById('navDrawer');
-			
-			// If an event is passed, it means the Hamburger icon was clicked
-			if (event) {
-				event.stopPropagation(); // Stops the click from "bubbling" to other elements
-				nav.classList.toggle('open');
-			} else {
-				// If no event, a link was clicked: force the menu to close
-				nav.classList.remove('open');
-			}
+			event.stopPropagation(); // Prevents clicking the hamburger from triggering window.onclick
+			nav.classList.toggle('open');
 		}
 
+		// Explicitly closes the menu when a link is clicked
+		function closeMenu() {
+			nav.classList.remove('open');
+		}
+
+		// Helper for loading pages and closing menu
 		function loadPage(pageUrl) {
+			closeMenu();
 			const frame = document.getElementsByName('content-viewport')[0];
-			if (frame) {
-				// This updates the iframe content and adds a timestamp to prevent caching
-				frame.src = pageUrl + '?t=' + new Date().getTime();
-			}
-			toggleMenu(); // Closes the menu after the load starts
+			frame.src = pageUrl + '?t=' + new Date().getTime();
 		}
 
-		// Close menu if user clicks anywhere outside the menu drawer
+		// Close menu if user clicks anywhere else on the screen
 		window.onclick = function(event) {
-			const nav = document.getElementById('navDrawer');
-			const menuCont = document.querySelector('.menu-container');
-			if (!menuCont.contains(event.target) && nav.classList.contains('open')) {
-				nav.classList.remove('open');
+			if (!nav.contains(event.target) && nav.classList.contains('open')) {
+				closeMenu();
 			}
 		}
 	</script>
