@@ -46,13 +46,19 @@
         <div class="hamburger"></div>
         <div class="hamburger"></div>
         <nav class="nav-drawer" id="navDrawer">
-            <a href="index.html"onclick="toggleMenu()">Main Page</a>
-            <a href="MathLogic.html" target="content-viewport" onclick="toggleMenu(); document.getElementsByName('content-viewport')[0].src='MathLogic.html?t=' + new Date().getTime(); return true;">Math Logic (201-911-VA)</a>
-            <a href="OpSys.html" target="content-viewport" onclick="toggleMenu(); document.getElementsByName('content-viewport')[0].src='OpSys.html?t=' + new Date().getTime(); return true;">Operating Systems (420-911-VA)</a>
-			<a href="Programming1.html" target="content-viewport" onclick="toggleMenu(); document.getElementsByName('current-viewport')[0].src='Programming1.html?t=' + new Date().getTime(); return true;">Programming 1 (420-910-VA)</a>
-			<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu()"><img src="logo_omnivox.jpg" alt="Omnivox"></a>
-			<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu()"><img src="logo-ticfp.png" alt="TicFP"></a>
-        </nav>
+			<a href="index.html">Main Page</a>
+			
+			<a href="javascript:void(0)" onclick="loadPage('MathLogic.html')">Math Logic (201-911-VA)</a>
+			<a href="javascript:void(0)" onclick="loadPage('OpSys.html')">Operating Systems (420-911-VA)</a>
+			<a href="javascript:void(0)" onclick="loadPage('Programming1.html')">Programming 1 (420-910-VA)</a>
+			
+			<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu(event)">
+				<img src="logo_omnivox.jpg" alt="Omnivox">
+			</a>
+			<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu(event)">
+				<img src="logo-ticfp.png" alt="TicFP">
+			</a>
+		</nav>
     </div>
 
     <iframe name="content-viewport" class="content-frame" srcdoc="
@@ -155,30 +161,38 @@
 		function toggleMenu(event) {
 			const nav = document.getElementById('navDrawer');
 			
-			// If an event exists, we are toggling (opening/closing)
+			// If we have an event, check if the user clicked the menu button itself
 			if (event) {
-				// Prevent the click from bubbling up if necessary
-				nav.classList.toggle('open');
+				// Stop the click from traveling from the link up to the container
+				event.stopPropagation();
+				
+				// Only toggle if we clicked the container/hamburger, not the links inside
+				if (event.target.classList.contains('menu-container') || event.target.classList.contains('hamburger')) {
+					nav.classList.toggle('open');
+				}
 			} else {
-				// If no event, a link was clicked: force close
+				// If called without an event (from a link), just close it
 				nav.classList.remove('open');
 			}
 		}
 
-		// Optional: Close menu if user clicks outside of it
+		// This handles the page loading AND closes the menu properly
+		function loadPage(pageUrl) {
+			toggleMenu(); // Closes the menu
+			const frame = document.getElementsByName('content-viewport')[0];
+			if (frame) {
+				frame.src = pageUrl + '?t=' + new Date().getTime();
+			}
+		}
+
+		// Close menu if user clicks anywhere else on the screen
 		window.onclick = function(event) {
 			const nav = document.getElementById('navDrawer');
-			const menuCont = document.querySelector('.menu-container');
-			if (!menuCont.contains(event.target) && nav.classList.contains('open')) {
+			if (!event.target.closest('.menu-container') && nav.classList.contains('open')) {
 				nav.classList.remove('open');
 			}
 		}
 		
-		function loadPage(pageUrl) {
-			toggleMenu(); // Closes the menu
-			const frame = document.getElementsByName('content-viewport')[0];
-			frame.src = pageUrl + '?t=' + new Date().getTime(); // Refreshes content
-		}
 	</script>
 
 </body>
