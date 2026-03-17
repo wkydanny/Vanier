@@ -25,13 +25,14 @@
             background-color: #f3f4f6; box-shadow: 2px 0 10px rgba(0,0,0,0.1);
             transition: 0.3s ease; display: flex; flex-direction: column; padding-top: 80px;
         }
-        .menu-container:hover .nav-drawer { left: 0; }
+        /* .menu-container:hover .nav-drawer { left: 0; } */
         .nav-drawer a {
             padding: 18px 25px; text-decoration: none;
             color: #333; font-weight: bold; border-bottom: 1px solid #e0e0e0;
             transition: all 0.2s;
         }
         .nav-drawer a:hover { background-color: #ffffff; color: #c62828; padding-left: 35px; }
+		.nav-drawer.open { left: 0; }
         .omnivox-menu-btn { text-align: center; padding: 20px 0; border-bottom: none !important; }
         .omnivox-menu-btn img { width: 180px; border-radius: 6px; transition: transform 0.2s; }
         .omnivox-menu-btn:hover img { transform: scale(1.05); }
@@ -40,17 +41,17 @@
 </head>
 <body>
 
-    <div class="menu-container">
+    <div class="menu-container" onclick="toggleMenu(event)">
         <div class="hamburger"></div>
         <div class="hamburger"></div>
         <div class="hamburger"></div>
-        <nav class="nav-drawer">
-            <a href="index.html">Main Page</a>
-            <a href="MathLogic.html" target="content-viewport" onclick="document.getElementsByName('content-viewport')[0].src='MathLogic.html?t=' + new Date().getTime(); return true;">Math Logic (201-911-VA)</a>
-            <a href="OpSys.html" target="content-viewport" onclick="document.getElementsByName('content-viewport')[0].src='OpSys.html?t=' + new Date().getTime(); return true;">Operating Systems (420-911-VA)</a>
-            <a href="Programming1.html" target="content-viewport" onclick="document.getElementsByName('content-viewport')[0].src='Programming1.html?t=' + new Date().getTime(); return true;">Programming 1 (420-910-VA)</a>
-            <a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn"><img src="logo_omnivox.jpg" alt="Omnivox"></a>
-            <a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn"><img src="logo-ticfp.png" alt="TicFP"></a>
+        <nav class="nav-drawer" id="navDrawer">
+            <a href="index.html"onclick="toggleMenu()">Main Page</a>
+            <a href="MathLogic.html" target="content-viewport" onclick="toggleMenu(); document.getElementsByName('content-viewport')[0].src='MathLogic.html?t=' + new Date().getTime(); return true;">Math Logic (201-911-VA)</a>
+            <a href="OpSys.html" target="content-viewport" onclick="toggleMenu(); document.getElementsByName('content-viewport')[0].src='OpSys.html?t=' + new Date().getTime(); return true;">Operating Systems (420-911-VA)</a>
+			<a href="Programming1.html" target="content-viewport" onclick="toggleMenu(); document.getElementsByName('current-viewport')[0].src='Programming1.html?t=' + new Date().getTime(); return true;">Programming 1 (420-910-VA)</a>
+			<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu()"><img src="logo_omnivox.jpg" alt="Omnivox"></a>
+			<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn" onclick="toggleMenu()"><img src="logo-ticfp.png" alt="TicFP"></a>
         </nav>
     </div>
 
@@ -149,6 +150,36 @@
         </body>
         </html>
     "></iframe>
+	
+	<script>
+		function toggleMenu(event) {
+			const nav = document.getElementById('navDrawer');
+			
+			// If an event exists, we are toggling (opening/closing)
+			if (event) {
+				// Prevent the click from bubbling up if necessary
+				nav.classList.toggle('open');
+			} else {
+				// If no event, a link was clicked: force close
+				nav.classList.remove('open');
+			}
+		}
+
+		// Optional: Close menu if user clicks outside of it
+		window.onclick = function(event) {
+			const nav = document.getElementById('navDrawer');
+			const menuCont = document.querySelector('.menu-container');
+			if (!menuCont.contains(event.target) && nav.classList.contains('open')) {
+				nav.classList.remove('open');
+			}
+		}
+		
+		function loadPage(pageUrl) {
+			toggleMenu(); // Closes the menu
+			const frame = document.getElementsByName('content-viewport')[0];
+			frame.src = pageUrl + '?t=' + new Date().getTime(); // Refreshes content
+		}
+	</script>
 
 </body>
 </html>
