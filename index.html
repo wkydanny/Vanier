@@ -49,9 +49,8 @@
 
 	<nav class="nav-drawer" id="navDrawer">
 		<a href="index.html" onclick="closeMenu()">Main Page</a>
-		<a href="MathLogic.html" target="content-viewport" onclick="loadPage('MathLogic.html')">Math Logic (201-911-VA)</a>
-		<a href="OpSys.html" target="content-viewport" onclick="loadPage('OpSys.html')">Operating Systems (420-911-VA)</a>
-		<a href="Programming1.html" target="content-viewport" onclick="loadPage('Programming1.html')">Programming 1 (420-910-VA)</a>
+		<a href="Database.html" target="content-viewport" onclick="loadPage('Database.html')">Database (420-921-VA)</a>
+		<a href="Programming2.html" target="content-viewport" onclick="loadPage('Programming2.html')">Programming 2 (420-920-VA)</a>
 		<a href="https://vaniercollege.omnivox.ca/" target="_blank" class="omnivox-menu-btn" onclick="closeMenu()"><img src="logo_omnivox.jpg" alt="Omnivox"></a>
 		<a href="https://ticfp.qc.ca/" target="_blank" class="omnivox-menu-btn" onclick="closeMenu()"><img src="logo-ticfp.png" alt="TicFP"></a>
 	</nav>
@@ -91,17 +90,18 @@
             </div>
 
             <script>
-                const c = { m: '<b>Math Logic</b>', p: '<b>Programming Concepts</b>', o: '<b>Operating Systems</b>' };
+                const c = { m: '<b>Math & Logic</b>', o: '<b>Operating Systems</b>', d: '<b>Database</b>', p: '<b>Programming</b>'};
                 
                 // Complete Schedule Data
                 const scheduleData = {
-                    '2026-03-16': { mon:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.p,pm:1}], tue:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.o,pm:1}], wed:[{t:'13:00-16:30',n:c.p,pm:1}], thu:[{t:'10:15-12:25',n:c.o}], fri:[{t:'9:00-12:30',n:c.p}] },
-                    '2026-03-23': { mon:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.p,pm:1}], tue:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.o,pm:1}], wed:[{t:'13:00-16:30',n:c.p,pm:1}], thu:[{t:'10:15-12:25',n:c.o}], fri:[{t:'9:00-12:30',n:c.p}] },
-                    '2026-03-30': { mon:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.p,pm:1}], tue:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.o,pm:1}], wed:[{t:'13:00-16:30',n:c.p,pm:1}], thu:[{t:'10:15-12:25',n:c.o}], fri:[] },
-                    '2026-04-06': { mon:[], tue:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.o,pm:1}], wed:[{t:'13:00-16:30',n:c.p,pm:1}], thu:[{t:'10:15-12:30',n:c.o}], fri:[{t:'9:00-12:00',n:c.m},{t:'13:00-15:00',n:c.p,pm:1}] },
-                    '2026-04-13': { mon:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.p,pm:1}], tue:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.o,pm:1}], wed:[{t:'13:00-16:30',n:c.p,pm:1}], thu:[{t:'10:15-12:25',n:c.o}], fri:[{t:'9:00-12:00',n:c.p},{t:'13:00-15:00',n:c.o,pm:1}] },
-                    '2026-04-20': { mon:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.p,pm:1}], tue:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.o,pm:1}], wed:[{t:'13:00-16:30',n:c.p,pm:1}], thu:[{t:'10:15-12:25',n:c.o}], fri:[{t:'9:00-12:00',n:c.p},{t:'13:00-15:00',n:c.o,pm:1}] },
-                    '2026-04-27': { mon:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.p,pm:1}], tue:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.o,pm:1}], wed:[{t:'13:00-16:30',n:c.p,pm:1}], thu:[{t:'10:15-12:25',n:c.o}], fri:[{t:'9:00-12:00',n:c.p},{t:'13:00-15:00',n:c.o,pm:1}] }
+				    '2026-04-27': { mon:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.p,pm:1}], tue:[{t:'9:00-12:00',n:c.m},{t:'13:00-16:30',n:c.o,pm:1}], wed:[{t:'13:00-16:30',n:c.p,pm:1}], thu:[{t:'10:15-12:25',n:c.o}], fri:[{t:'9:00-12:00',n:c.p},{t:'13:00-15:00',n:c.o,pm:1}] },
+                    '2026-05-04': { mon:[{t:'8:30-12:30',n:c.p},{t:'13:00-17:00',n:c.d,pm:1}], tue:[{t:'13:00-17:00',n:c.d,pm:1}], wed:[{t:'8:30-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], thu:[{t:'10:15-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], fri:[] },
+                    '2026-05-11': { mon:[{t:'8:30-12:30',n:c.p},{t:'13:00-17:00',n:c.d,pm:1}], tue:[{t:'13:00-17:00',n:c.d,pm:1}], wed:[{t:'8:30-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], thu:[{t:'10:15-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], fri:[] },
+                    '2026-05-18': { mon:[], tue:[{t:'13:00-17:00',n:c.d,pm:1}], wed:[{t:'8:30-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], thu:[{t:'10:15-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], fri:[] },
+                    '2026-05-25': { mon:[{t:'8:30-12:30',n:c.p},{t:'13:00-17:00',n:c.d,pm:1}], tue:[{t:'13:00-17:00',n:c.d,pm:1}], wed:[{t:'8:30-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], thu:[{t:'10:15-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], fri:[] },
+                    '2026-06-01': { mon:[{t:'8:30-12:30',n:c.p},{t:'13:00-17:00',n:c.d,pm:1}], tue:[{t:'13:00-17:00',n:c.d,pm:1}], wed:[{t:'8:30-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], thu:[{t:'10:15-13:00',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], fri:[] },
+                    '2026-06-08': { mon:[{t:'8:30-12:30',n:c.p},{t:'13:00-17:00',n:c.d,pm:1}], tue:[{t:'13:00-17:00',n:c.d,pm:1}], wed:[{t:'8:30-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], thu:[{t:'10:15-13:00',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], fri:[] },
+                    '2026-06-15': { mon:[{t:'8:30-12:30',n:c.p},{t:'13:00-17:00',n:c.d,pm:1}], tue:[{t:'13:00-17:00',n:c.d,pm:1}], wed:[{t:'8:30-12:30',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], thu:[{t:'10:15-13:00',n:c.p},{t:'13:00-16:00',n:c.d,pm:1}], fri:[] }
                 };
 
                 const deadlines = [
